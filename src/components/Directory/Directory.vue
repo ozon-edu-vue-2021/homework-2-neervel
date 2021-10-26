@@ -1,9 +1,11 @@
 <template>
   <div >
-    <span 
+    <div 
       @click="changeVisibility"
       class="directory-name"
-    >📁 {{name}}</span> 
+    >
+      {{ directoryIcon }} {{ name }}
+    </div> 
     <div v-if="isOpen">
         <node 
             v-for="(item, i) in content"
@@ -33,6 +35,11 @@ export default {
       default:() => ([])
     }
   },
+  computed: {
+    directoryIcon() {
+      return this.isOpen ? '📂' : '📁'
+    }
+  },
   data() {
     return {
       isOpen: false
@@ -47,7 +54,12 @@ export default {
 </script>
 
 <style scoped>
-.directory-name{
+.directory-name {
   cursor: pointer;
+  margin-left: 10px;
+  transition: .2s;
+}
+.directory-name:hover {
+  background-color: rgba(91, 115, 252, 0.3)
 }
 </style>

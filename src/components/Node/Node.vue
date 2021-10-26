@@ -1,26 +1,15 @@
 <template>
   <div >
-    <div v-if="item.type==='directory'" style="margin-left: 8px;">
+    <div v-if="item.type==='directory'">
       <directory
         :name="item.name"
         :content="item.contents"
       />
     </div>
-    <div 
-      v-else-if="item.type==='file'" 
-      style="margin-left: 8px;"
-    >
+    <div  v-else>
       <file
         :name="item.name"
-      />
-    </div>
-    <div 
-      v-else-if="item.type==='link'" 
-      style="margin-left: 8px;"
-    >
-      <Link
-        :name="item.name"
-        style="margin-left: 8px;"
+        :type="item.type"
       />
     </div>
   </div>
@@ -31,8 +20,7 @@ export default {
   name: 'Node',
   components: {
     Directory: () => import('../Directory/Directory.vue'),
-    File: () => import('../File/File.vue'),
-    Link: () => import('../Link/Link.vue')
+    File: () => import('../File/File.vue')
   },
   props: {
     item: {

@@ -1,15 +1,17 @@
 <template>
-  <div >
+  <div class="node">
     <div v-if="item.type==='directory'">
       <directory
         :name="item.name"
         :content="item.contents"
+        :parentPath="path"
       />
     </div>
     <div  v-else>
       <file
         :name="item.name"
         :type="item.type"
+        :parentPath="path"
       />
     </div>
   </div>
@@ -25,6 +27,15 @@ export default {
   props: {
     item: {
       type: Object
+    },
+    parentPath: {
+      type: String,
+      default: () => ('')
+    }
+  },
+  computed: {
+    path() {
+      return this.parentPath + '/' + this.item.name
     }
   }
 }

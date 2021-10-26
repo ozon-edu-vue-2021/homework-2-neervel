@@ -2,7 +2,7 @@
   <div id="app">
     <div class="file-tree">
       <div class="file-tree-header">
-        <span class="file-tree__title">Route 256 • Explorer</span>
+        <span class="file-tree__title">Route 256 • Super Dooper Explorer</span>
       </div>
       <div class="file-tree-body">
         <node
@@ -51,6 +51,7 @@
         background-color: #fff;
         border-radius: 10px;
         filter: drop-shadow(5px 5px 20px rgba(0, 0, 0, 0.3));
+        padding-bottom: 30px;
     }
     
     .file-tree-header {

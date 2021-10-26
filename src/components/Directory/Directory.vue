@@ -3,15 +3,22 @@
     <div 
       @click="changeVisibility"
       class="directory-name"
+      @mouseenter="togglePath"
+      @mouseleave="togglePath"
     >
       {{ directoryIcon }} {{ name }}
+      <span 
+        v-if="visiblePath"
+        class="file-path"  
+      >{{ parentPath }}</span>
     </div> 
     <div v-if="isOpen">
         <node 
             v-for="(item, i) in content"
             :key="`${item.name}-${i}`"
             :item="item"
-            style="margin-left: 8px;"
+            style="margin-left: 20px;"
+            :parentPath="parentPath"
           />
     </div>
      
@@ -33,6 +40,9 @@ export default {
     content: {
       type: Array,
       default:() => ([])
+    },
+    parentPath: {
+      type: String
     }
   },
   computed: {
@@ -42,12 +52,16 @@ export default {
   },
   data() {
     return {
-      isOpen: false
+      isOpen: false,
+      visiblePath: false
     }
   },
   methods: {
     changeVisibility() {
       this.isOpen = !this.isOpen
+    },
+    togglePath() {
+      this.visiblePath = !this.visiblePath
     }
   }
 }
@@ -56,10 +70,15 @@ export default {
 <style scoped>
 .directory-name {
   cursor: pointer;
-  margin-left: 10px;
   transition: .2s;
+  height: 25px;
 }
 .directory-name:hover {
   background-color: rgba(91, 115, 252, 0.3)
+}
+.file-path {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.3);
+  margin-left: 30px;
 }
 </style>
